@@ -2,7 +2,20 @@
 
 namespace App\Controller;
 
-class HomeController
-{
 
+use App\Service\VtexGet;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+
+class HomeController extends AbstractController
+{
+    #[Route('/')]
+    public function index(VtexGet $vtexGet):Response
+    {
+
+        return $this->render('home/homepage.html.twig', [
+
+        ]);
+    }
 }
