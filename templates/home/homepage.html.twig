@@ -1,5 +1,44 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h3>ola mundo</h3>
+    <div class="container">
+        <div class="row justify-content-center mt-4">
+            <div class="col-lg-1 col-md-2 col-sm-3">
+                <img class="img-fluid" src="{{ asset('img/logo-preta.webp') }}">
+            </div>
+        </div>
+        <div class="row justify-content-center mt-3">
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <img class="img-fluid" src="{{ asset('img/influete.webp') }}">
+            </div>
+        </div>
+        <div class="row justify-content-center mt-3 mb-5">
+            <div class="col-5">
+                <div class="caixa-preta">
+                    {% if login == 'ERRO' %}
+                        <div class="alert alert-danger" role="alert">
+                            Cupom não encontrado! verifique se digitou corretamente.
+                        </div>
+                    {% endif %}
+                    <form action="{{ path('my_dashboard') }}">
+                        <div class="row g-3 align-items-center">
+                            <h3>Entrar</h3>
+                            <div class="input-group col-12">
+                                <span class="input-group-text"><i class="fa-solid fa-at"></i></span>
+                                <input type="text" name="email" class="form-control" placeholder="E-mail para login">
+                            </div>
+                            <div class="input-group col-12">
+                                <span class="input-group-text"><i class="fa-solid fa-key"></i></span>
+                                <input type="text" name="senha" class="form-control" placeholder="Senha">
+                            </div>
+                            <div class="col-12">
+                                <button class="btn">Entrar</button>
+                            </div>
+                            <a href="{{ path('app_home_cadastro') }}">Cadastre-se</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

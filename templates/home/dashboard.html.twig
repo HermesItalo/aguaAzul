@@ -1,0 +1,171 @@
+
+
+{% extends 'base.html.twig' %}
+{% block body %}
+
+
+        <div class="faixa-preta">
+            <button class="btn btn-menu-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"><i class="fa-solid fa-bars"></i></button>
+
+            <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+                <div class="offcanvas-header">
+                    <img class="m-auto" src="{{ asset('img/influete.webp') }}">
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body icon-faixa-preta-open mt-4">
+                    <a href=""><i class="fa-solid fa-money-check-dollar"></i> Vendas</a>
+                    <hr>
+                    <a href=""><i class="fa-solid fa-circle-user"></i> Perfil</a>
+                    <hr>
+                    <a href="/destruir_sessao"><i class="fa-solid fa-right-from-bracket"></i> Sair</a>
+                </div>
+            </div>
+
+            <div class="icon-faixa-preta mt-5">
+                <a href=""><i class="fa-solid fa-money-check-dollar"></i></a>
+            </div>
+
+            <div class="icon-faixa-preta">
+                <a href=""><i class="fa-solid fa-circle-user"></i></a>
+            </div>
+
+            <div class="icon-faixa-preta">
+                <a href=""><i class="fa-solid fa-right-from-bracket"></i></a>
+            </div>
+        </div>
+
+        <div class="container-fluid container-background">
+            {% for dado in dados%}
+                <div class="row">
+                    <div class="col-12">
+                        <div class="row nome-user-bar align-middle shadow-sm">
+                            <div class="col-12 align-middle">
+                                <p><i class="fa-solid fa-circle-user"></i> {{ dado.nome }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row linha-elo-influete" style="background-image: url({{ asset('img/'~dado.elo~'.png') }});">
+                    <div class="col-md-9">
+                        <h1>Bem-vinda <b>influete!</b><img class="img-fluid img-adeus" src="{{ asset('img/adeus.png') }}"></h1>
+                        <small>Aqui está o status do seu cupom hoje:</small>
+                    </div>
+                    <div class="col-md-3 nivel-elo">
+                        <p class="float-end">Nível: <b><i class="fa-solid fa-crown"></i> {{ dado.elo }}</b></p>
+                    </div>
+                </div>
+                <div class="row linha-dados-vendas mb-4">
+                    <div class="col-md-7 mt-3">
+                        <div class="row mb-3">
+                            <div class="col-lg-4 mb-3">
+                                <div class="caixa-dados shadow">
+                                    <p>Total em vendas</p>
+                                    <h1>R$ {{ dadosVenda }}</h1>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 mb-3">
+                                <div class="caixa-dados shadow">
+                                    <p>Saldo atua comissão</p>
+                                    {% if dado.elo == 'bronze' %}<h1>R$ {{ dado.meuSaldo*0.0008 }}</h1>{% endif %}
+                                    {% if dado.elo == 'prata' %}<h1>R$ {{ dado.meuSaldo*0.001 }}</h1>{% endif %}
+                                    {% if dado.elo == 'ouro' %}<h1>R$ {{ dado.meuSaldo*0.0012 }}</h1>{% endif %}
+                                    {% if dado.elo == 'master' %}<h1>R$ {{ dado.meuSaldo*0.0015 }}</h1>{% endif %}
+                                </div>
+                            </div>
+                            <div class="col-lg-4 mb-3">
+                                <div class="caixa-dados shadow">
+                                    <p>Pedidos</p>
+                                    <h1>{{ dadosQuantidade }}</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="caixa-dados shadow">
+                                    <p>Meta minima</p>
+                                    {% if dado.elo == 'bronze' %}<h1>R$ {{ dadosVenda }} de R$ 2 000,00</h1>{% endif %}
+                                    {% if dado.elo == 'prata' %}<h1>R$ {{ dadosVenda }} de R$ 8 000,00</h1>{% endif %}
+                                    {% if dado.elo == 'ouro' %}<h1>R$ {{ dadosVenda }} de R$ 10 000,00</h1>{% endif %}
+                                    {% if dado.elo == 'master' %}<h1>R$ {{ dadosVenda }} de R$ 12 000,00</h1>{% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5 mt-3">
+                        <div class="caixa-dados shadow">
+                            <div class="row justify-content-center">
+                                <div class="col-md-3">
+                                    <p class="mt-4">Continue, você <br>está quase <br>passando de<br> nível!</p>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="mt-md-5">
+                                        {{ render_chart(chart) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+            <div class="row linha-ranking justify-content-center">
+                <div class="col-12">
+                    <h3>Ranking das <b>influetes</b></h3>
+                    <table class="table shadow rounded">
+                        <thead>
+                        <tr>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Cupom</th>
+                            <th scope="col">Elo</th>
+                            <th scope="col">Valor</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for elo in elos %}
+                            {%   if elo.elo == 'master' %}
+                                <tr>
+                                    <td>{{ elo.nome }}</td>
+                                    <td>{{ elo.cupom }}</td>
+                                    <td>{{ elo.elo }}</td>
+                                    <td>R$ {{ elo.meuSaldo }}</td>
+                                </tr>
+                            {%  endif  %}
+                        {%  endfor %}
+                        {% for elo in elos %}
+                            {%   if elo.elo == 'ouro' %}
+                                <tr>
+                                    <td>{{ elo.nome }}</td>
+                                    <td>{{ elo.cupom }}</td>
+                                    <td>{{ elo.elo }}</td>
+                                    <td>R$ {{ elo.meuSaldo }}</td>
+                                </tr>
+                            {%  endif  %}
+                        {%  endfor %}
+                        {% for elo in elos %}
+                            {%   if elo.elo == 'prata' %}
+                                <tr>
+                                    <td>{{ elo.nome }}</td>
+                                    <td>{{ elo.cupom }}</td>
+                                    <td>{{ elo.elo }}</td>
+                                    <td>R$ {{ elo.meuSaldo }}</td>
+                                </tr>
+                            {%  endif  %}
+                        {%  endfor %}
+                        {% for elo in elos %}
+                            {%   if elo.elo == 'bronze' %}
+                                <tr>
+                                    <td>{{ elo.nome }}</td>
+                                    <td>{{ elo.cupom }}</td>
+                                    <td>{{ elo.elo }}</td>
+                                    <td>R$ {{ elo.meuSaldo }}</td>
+                                </tr>
+                            {%  endif  %}
+                        {%  endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+    {% endblock %}

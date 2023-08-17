@@ -1,3 +1,243 @@
+@import "~bootstrap";
 body {
-    background-color: yellow;
+    background-image: url(../../public/img/signin-background.webp);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    height: 100svh;
+}
+
+.caixa-preta{
+    background-color: #18181B;
+    padding: 40px;
+    border-radius: 20px;
+}
+
+.caixa-preta input{
+    border-radius: 30px;
+    background-color: #babbbc;
+}
+
+.caixa-preta small {
+    color: white;
+}
+
+.caixa-preta button {
+    background-color: #EC5AAE;
+    border-radius: 30px;
+    width: 100%;
+}
+
+.caixa-preta span {
+    background-color: #babbbc;
+    border-radius: 30px;
+}
+
+.faixa-preta{
+    background-color: #18181B;
+    width: 60px;
+    height: 100vh;
+    position: fixed;
+
+}
+
+.btn-menu-dark{
+    color: #cccccc;
+    font-size: 25px;
+    padding-left: 18px;
+}
+
+.btn-menu-dark:hover{
+    color: #EC5AAE;
+    font-size: 25px;
+}
+
+.icon-faixa-preta{
+    padding-bottom: 7px;
+    padding-top: 7px;
+    font-size: 21px;
+    color: #cccccc;
+    text-align: center;
+}
+
+.icon-faixa-preta:hover{
+    padding-bottom: 7px;
+    padding-top: 7px;
+    font-size: 21px;
+    width: 100px;
+    background-color: #18181B;
+    transition: 0.2s;
+    border-radius: 10px;
+    color: #EC5AAE;
+}
+
+.icon-faixa-preta a{
+    color: #cccccc;
+}
+
+.text-reset{
+    color: #cccccc;
+}
+
+.offcanvas {
+    background-color: #18181B;
+    color: #cccccc;
+}
+
+.offcanvas img{
+    width: 150px;
+}
+
+.icon-faixa-preta-open a{
+    font-size: 17px;
+    color: #cccccc;
+    text-decoration: none;
+    text-align: start;
+    margin-left: 20px;
+}
+
+.icon-faixa-preta-open a:hover{
+    font-size: 17px;
+    color: #EC5AAE;
+    text-decoration: none;
+    text-align: start;
+    margin-left: 20px;
+}
+
+.btn-close{
+    background-color: #cccccc;
+}
+
+.container-background{
+    background-color: #ECF8F8 ;
+
+}
+
+
+
+.card-rosa{
+    border: 1px solid #CF4D98;
+    margin: 10px;
+    border-radius: 7px;
+    height: 160px;
+
+}
+
+.nome-user-bar{
+    background-color: white;
+    text-align: end;
+}
+
+.nome-user-bar{
+    background-color: white;
+    text-align: end;
+}
+
+.nome-user-bar p{
+    padding-top: 12px;
+    font-size: 20px;
+    padding-right: 20px;
+    vertical-align: middle;
+    font-family: 'Days One', sans-serif;
+    color: #545454;
+
+}
+
+.nome-user-bar p .fa-solid{
+    font-size: 30px;
+    color: #cccccc;
+
+}
+
+.linha-elo-influete{
+    margin-top: 20px;
+    margin-left:90px;
+    margin-right: 3px;
+//background-color: #c0c0c0;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 20px;
+    border-radius: 20px;
+}
+
+.linha-elo-influete small{
+    margin-top: -10px;
+    color: #545454;
+}
+
+.container-background h1{
+    color: #CF4D98;
+    font-size: 30px;
+    font-family: 'Days One', sans-serif;
+}
+
+.nivel-elo{
+    margin-top: 20px;
+}
+
+.nivel-elo p{
+
+}
+
+.nivel-elo b{
+    background-color: #868686;
+    color: white;
+    padding: 5px 10px 5px 10px;
+    border-radius: 20px;
+}
+
+.img-adeus{
+    width: 50px;
+    margin-left: 10px;
+}
+
+.linha-dados-vendas{
+    margin-left:78px;
+    margin-top: 20px;
+}
+
+.caixa-dados{
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+    height: 100%;
+}
+
+.caixa-dados p{
+    margin-bottom: -2px;
+    margin-top: -9px;
+}
+
+.caixa-dados h1{
+    font-size: 20px;
+}
+
+.linha-relatorio-completo{
+    text-align: center;
+    font-size: 20px;
+
+}
+
+.linha-relatorio-completo button{
+    border: 2px solid black;
+}
+
+.linha-relatorio-completo button:hover{
+    background-color: black;
+    color: white;
+    transition: 0.2s;
+}
+.linha-ranking{
+    margin-left:78px;
+}
+
+
+.linha-ranking h3 {
+    color: #CF4D98;
+    font-size: 30px;
+    font-family: 'Days One', sans-serif;
+    margin-bottom: 15px;
+    background-color: #FFD7EF;
+    padding: 8px;
+    border-radius: 10px;
 }

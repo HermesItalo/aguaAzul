@@ -4,7 +4,7 @@ namespace App\Service;
 
 class VtexGet
 {
-    public function getCupom(string $string):array
+    public function getCupom(string $string):string
     {
         $quantidadeUso = 0;
         $a = 0;
@@ -113,12 +113,11 @@ class VtexGet
 
         }
         echo "</table>";
+        $valorFinalInteiro = $valorFinal;
         $valorFinal = substr_replace($valorFinal, '.', -2, 0);
         $quantidadeVenda = number_format($valorFinal, 2, ',', ' ');
-        $dadosDeVenda = [
-            'quantodadeVenda' => $quantidadeVenda,
-            'quantidadeUso' => $quantidadeUso
-        ];
+        $dadosDeVenda =  $quantidadeVenda."/".$quantidadeUso."/".$valorFinalInteiro;
+
         return $dadosDeVenda;
     }
 
@@ -143,7 +142,7 @@ class VtexGet
             'X-VTEX-API-AppToken: OWVQNAHTMYZJTYLBGYSGMNCMURNABRMBELHYKCZVEACMIGKOJOLCZDABCINSDXLGFRHHMGQCZREQYHQTADHEPPSYDOZWIHILLPTPNBUSHCEGSHMZEBQCHOCYBCBMHPIW'
         );
 
-        $url = "https://tfcxa2.vtexcommercestable.com.br/api/rnb/pvt/coupon/usage/Lais10";
+        $url = "https://tfcxa2.vtexcommercestable.com.br/api/rnb/pvt/coupon/usage/".$string;
 
         $certPath = __DIR__.'/cacert.pem';
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);

@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row justify-content-center mt-4">
+            <div class="col-lg-1 col-md-2 col-sm-3">
+                <img class="img-fluid" src="{{ asset('img/logo-preta.webp') }}">
+            </div>
+        </div>
+        <div class="row justify-content-center mt-3">
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <img class="img-fluid" src="{{ asset('img/influete.webp') }}">
+            </div>
+        </div>
+        <div class="row justify-content-center mt-3 mb-5">
+            <div class="col-5">
+                <div class="caixa-preta">
+                    {% if cadastro == 'SEM_CUPOM' %}
+                        <div class="alert alert-danger" role="alert">
+                           Cupom não encontrado! verifique se digitou corretamente.
+                        </div>
+                    {% endif %}
+                    {% if cadastro == 'JA_CADASTRADO' %}
+                        <div class="alert alert-primary" role="alert">
+                            Cadastro já existente!.
+                        </div>
+                    {% endif %}
+                    <form action="{{ path('new_user') }}" method="post">
+                        <div class="row g-3 align-items-center">
+                            <div class="input-group col-12">
+                                <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
+                                <input type="text" id="nome" name="nome" class="form-control" placeholder="Nome completo">
+                            </div>
+                            <div class="input-group col-12">
+                                <span class="input-group-text"><i class="fa-solid fa-at"></i></span>
+                                <input type="text" name="email" class="form-control" placeholder="E-mail para login">
+                            </div>
+                            <div class="input-group col-12">
+                                <span class="input-group-text"><i class="fa-solid fa-rug"></i></span>
+                                <input type="text" name="cupom" class="form-control" placeholder="Seu cupom da nossa loja">
+                            </div>
+                            <div class="input-group col-12">
+                                <span class="input-group-text"><i class="fa-solid fa-key"></i></span>
+                                <input type="text" name="senha" class="form-control" placeholder="Senha">
+                            </div>
+                            <div class="input-group col-12">
+                                <span class="input-group-text"><i class="fa-regular fa-id-card"></i></span>
+                                <input type="text" name="cpf" class="form-control" placeholder="CPF">
+                            </div>
+                            <div class="input-group col-12">
+                                <span class="input-group-text"><i class="fa-brands fa-pix"></i></span>
+                                <input type="text" name="pix" class="form-control" placeholder="Chave PIX">
+                            </div>
+                            <div class="col-12">
+                                <button class="btn">Cadastrar</button>
+                            </div>
+                            <a href="{{ path('app_home_index') }}">Voltar</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
