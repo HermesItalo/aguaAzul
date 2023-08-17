@@ -1,0 +1,95 @@
+
+
+{% extends 'base.html.twig' %}
+{% block body %}
+
+
+    <div class="faixa-preta">
+        <button class="btn btn-menu-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"><i class="fa-solid fa-bars"></i></button>
+
+        <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+            <div class="offcanvas-header">
+                <img class="m-auto" src="{{ asset('img/influete.webp') }}">
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body icon-faixa-preta-open mt-4">
+                <a href="{{ path('my_dashboard') }}"><i class="fa-solid fa-money-check-dollar"></i> Vendas</a>
+                <hr>
+                <a href="{{ path('meu_perfil') }}"><i class="fa-solid fa-circle-user"></i> Perfil</a>
+                <hr>
+                <a href="/destruir_sessao"><i class="fa-solid fa-right-from-bracket"></i> Sair</a>
+            </div>
+        </div>
+
+        <div class="icon-faixa-preta mt-5">
+            <a href="{{ path('my_dashboard') }}"><i class="fa-solid fa-money-check-dollar"></i></a>
+        </div>
+
+        <div class="icon-faixa-preta">
+            <a href="{{ path('meu_perfil') }}"><i class="fa-solid fa-circle-user"></i></a>
+        </div>
+
+        <div class="icon-faixa-preta">
+            <a href=""><i class="fa-solid fa-right-from-bracket"></i></a>
+        </div>
+    </div>
+
+
+    <div class="container-fluid container-background pt-3">
+    {% for dados in dadosUsuarios %}
+        <div class="row justify-content-center linha-topo-editar-dados">
+            <div class="col-9">
+                <h1>Bem-vinda <b>{{ dados.nome }}</b></h1>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-4 linha-fomulario-editar-dados">
+            <div class="col-6">
+
+                    <form>
+                        <div class="row">
+                            <div class="col-12">
+                                <label>Nome</label>
+                                <input class="form-control" name="nome" placeholder="{{ dados.nome }}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>E-mail</label>
+                                <input class="form-control" name="email" placeholder="{{ dados.email }}">
+                            </div>
+                            <div class="col-md-3">
+                                <label>Cupom</label>
+                                <input class="form-control" name="cupom" placeholder="{{ dados.cupom }}">
+                            </div>
+                            <div class="col-md-3">
+                                <label>Senha</label>
+                                <input class="form-control" name="senha" placeholder="{{ dados.senha }}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <label>CPF</label>
+                                <input class="form-control" name="cpf" placeholder="{{ dados.cpf }}">
+                            </div>
+                            <div class="col-md-5">
+                                <label>PIX</label>
+                                <input class="form-control" name="pix" placeholder="{{ dados.pix }}">
+                            </div>
+                            <div class="col-md-2">
+                                <label>Nível</label>
+                                <input class="form-control" name="elo" placeholder="{{ dados.elo }}">
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-md-2">
+                                <button class="btn" type="submit">Atualizar</button>
+                            </div>
+                        </div>
+                    </form>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+
+
+{% endblock %}

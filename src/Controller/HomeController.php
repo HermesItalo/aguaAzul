@@ -29,8 +29,12 @@ class HomeController extends AbstractController
     #[Route('/dashboard', name: 'my_dashboard')]
     public function dashboard(Request $request, EntityManagerInterface $entityManager, VtexGet $vtexGet, StringDecod $decod, ChartBuilderInterface $chartBuilder):Response
     {
+        session_start();
         $email= $request->query->get('email');
         $senha = $request->query->get('senha');
+
+        $_SESSION['email'] = $email;
+        $_SESSION['senha'] = $senha;
 
         $dadosElo = $entityManager->getRepository(User::class);
         $elos = $dadosElo->findBy([], ['meuSaldo' => 'DESC']);
@@ -43,8 +47,6 @@ class HomeController extends AbstractController
         $dadosVendaValor = $decod->explodBarValue($dadosVenda);
         $dadosVendaQuantidade = $decod->explodBarAmount($dadosVenda);
         $dadosVendaInt = $decod->explodBarValueInt($dadosVenda);
-
-
 
         $userRepository->upSaldo($email, $dadosVendaInt);
 
@@ -62,10 +64,6 @@ class HomeController extends AbstractController
 
            ],
         ]);
-
-
-
-
 
         return $this->render('home/dashboard.html.twig', [
                 'dados' => $user,
@@ -126,8 +124,22 @@ class HomeController extends AbstractController
                 'cadastro' => 'JA_CADASTRADO'
             ]);
         }
+    }
 
+    public function relatorioComoleto():Response
+    {
+        return $this->render('home/relatorioCompleto.html.twig');
+    }
+    #[Route('/meuPerfil', name: 'meu_perfil')]
+    public function meuperfil(EntityManagerInterface $entityManager):Response
+    {
+        session_start();
 
+        $userRepository = $entityManager->getRepository(User::class);
+        $user = $userRepository->findBy(['email' => $_SESSION['email'], 'senha' => $_SESSION['senha']]);
 
+        return $this->render('home/meuPerfil.html.twig', [
+            'dadosUsuarios' => $user
+        ]);
     }
 }

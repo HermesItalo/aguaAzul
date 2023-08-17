@@ -241,3 +241,25 @@ body {
     padding: 8px;
     border-radius: 10px;
 }
+
+.linha-topo-editar-dados h1{
+    color: #CF4D98;
+    font-size: 30px;
+    font-family: 'Days One', sans-serif;
+    margin-bottom: 15px;
+    margin-top: 50px;
+    background-color: #FFD7EF;
+    padding: 8px;
+    border-radius: 10px;
+}
+
+.linha-fomulario-editar-dados input {
+    border: none;
+    margin-bottom: 20px;
+    color: #EC5AAE;
+}
+
+.linha-fomulario-editar-dados button {
+    
+}
+
